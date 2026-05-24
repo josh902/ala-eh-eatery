@@ -28,7 +28,7 @@ export default function Navbar() {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       setIsScrolled(currentScrollY > 50);
-      setIsHidden(currentScrollY > 15);
+      setIsHidden(currentScrollY > 30);
       setLastScrollY(currentScrollY);
     };
 
