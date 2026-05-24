@@ -103,16 +103,6 @@ export default function HeroSection() {
             View Menu
           </Button>
         </motion.div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden lg:block"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <div className="text-brand-gold-light text-sm">Scroll to explore</div>
-          <div className="w-1 h-8 mx-auto mt-2 border-l-2 border-brand-gold-light"></div>
-        </motion.div>
       </motion.div>
     </section>
   );
