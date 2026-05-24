@@ -5,6 +5,7 @@ import FeaturedMenuSection from "@/components/FeaturedMenuSection";
 import GallerySection from "@/components/GallerySection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import ReservationSection from "@/components/ReservationSection";
+import DeliverySection from "@/components/DeliverySection";
 import LocationSection from "@/components/LocationSection";
 import Footer from "@/components/Footer";
 
@@ -18,6 +19,7 @@ export default function Home() {
       <GallerySection />
       <TestimonialsSection />
       <ReservationSection />
+      <DeliverySection />
       <LocationSection />
       <Footer />
     </main>
