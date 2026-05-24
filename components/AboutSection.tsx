@@ -66,6 +66,7 @@ export default function AboutSection() {
                   alt="Ala Eh Eatery"
                   width={400}
                   height={400}
+                  quality={100}
                   className="w-full h-full object-contain drop-shadow-2xl"
                 />
               </div>
