@@ -34,10 +34,6 @@ const galleryItems = [
   { id: 1, image: "/images/tapsilog.png", alt: "Tapsilog", isImage: true },
   { id: 2, image: "/images/palabok.png", alt: "Pancit Palabok", isImage: true },
   { id: 3, image: "/images/club-sandwich.png", alt: "Club Sandwich", isImage: true },
-  { id: 4, gradient: "from-brand-maroon via-brand-gold to-brand-warm-beige", isImage: false },
-  { id: 5, gradient: "from-brand-gold to-brand-maroon", isImage: false },
-  { id: 6, gradient: "from-brand-warm-beige via-brand-maroon to-brand-gold", isImage: false },
-  { id: 7, gradient: "from-brand-gold-light via-brand-maroon to-brand-dark", isImage: false },
 ];
 
 export default function GallerySection() {
