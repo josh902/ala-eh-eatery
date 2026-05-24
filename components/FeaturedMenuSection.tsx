@@ -30,13 +30,16 @@ const itemVariants: Variants = {
 };
 
 export default function FeaturedMenuSection() {
-  // Get first 4 categories with items for featured display
-  const featuredCategories = menuData
-    .filter((cat) => cat.items.length > 0)
+  // Get first 4 menu items that have images for featured display
+  const featuredItems = menuData
+    .flatMap((category) =>
+      category.items.map((item) => ({ ...item, categoryLabel: category.label }))
+    )
+    .filter((item) => item.image)
     .slice(0, 4);
 
-  // Show placeholder if no menu items yet
-  const showPlaceholder = featuredCategories.length === 0;
+  // Show placeholder if no menu items with images yet
+  const showPlaceholder = featuredItems.length === 0;
 
   return (
     <section
@@ -102,62 +105,60 @@ export default function FeaturedMenuSection() {
           </motion.div>
         ) : (
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
           >
-            {featuredCategories.map((category) => (
-              category.items.slice(0, 1).map((item, idx) => (
-                <motion.div
-                  key={`${category.id}-${idx}`}
-                  className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105"
-                  variants={itemVariants}
-                >
-                  <div className="relative h-48 bg-gradient-to-br from-brand-maroon via-brand-gold to-brand-warm-beige overflow-hidden">
-                    {item.image ? (
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        loading="lazy"
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center text-white/30 font-serif text-2xl font-bold">
-                        <UtensilsCrossed className="w-12 h-12" />
-                      </div>
-                    )}
-                    {item.badge && (
-                      <span className="absolute top-3 right-3 px-3 py-1 bg-brand-maroon text-white text-xs font-bold rounded-full">
-                        {item.badge === "spicy"
-                          ? "🌶️ Spicy"
-                          : item.badge === "vegetarian"
-                          ? "🥬 Vegetarian"
-                          : "👨‍🍳 Chef's Special"}
-                      </span>
-                    )}
-                  </div>
-                  <div className="p-6">
-                    <h3 className="font-serif text-xl font-bold text-brand-dark mb-2">
-                      {item.name}
-                    </h3>
-                    {item.description && (
-                      <p className="text-sm text-brand-text-dark font-light mb-4">
-                        {item.description}
-                      </p>
-                    )}
-                    <div className="flex justify-between items-center">
-                      <span className="text-brand-gold font-serif font-bold text-lg">
-                        ${item.price.toFixed(2)}
-                      </span>
-                      <span className="text-xs text-brand-maroon font-semibold uppercase">
-                        {category.label}
-                      </span>
+            {featuredItems.map((item, idx) => (
+              <motion.div
+                key={`featured-${idx}`}
+                className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105"
+                variants={itemVariants}
+              >
+                <div className="relative h-48 bg-gradient-to-br from-brand-maroon via-brand-gold to-brand-warm-beige overflow-hidden">
+                  {item.image ? (
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-white/30 font-serif text-2xl font-bold">
+                      <UtensilsCrossed className="w-12 h-12" />
                     </div>
+                  )}
+                  {item.badge && (
+                    <span className="absolute top-3 right-3 px-3 py-1 bg-brand-maroon text-white text-xs font-bold rounded-full">
+                      {item.badge === "spicy"
+                        ? "🌶️ Spicy"
+                        : item.badge === "vegetarian"
+                        ? "🥬 Vegetarian"
+                        : "👨‍🍳 Chef's Special"}
+                    </span>
+                  )}
+                </div>
+                <div className="p-6">
+                  <h3 className="font-serif text-xl font-bold text-brand-dark mb-2">
+                    {item.name}
+                  </h3>
+                  {item.description && (
+                    <p className="text-sm text-brand-text-dark font-light mb-4">
+                      {item.description}
+                    </p>
+                  )}
+                  <div className="flex justify-between items-center">
+                    <span className="text-brand-gold font-serif font-bold text-lg">
+                      ${item.price.toFixed(2)}
+                    </span>
+                    <span className="text-xs text-brand-maroon font-semibold uppercase">
+                      {item.categoryLabel}
+                    </span>
                   </div>
-                </motion.div>
-              ))
+                </div>
+              </motion.div>
             ))}
           </motion.div>
         )}

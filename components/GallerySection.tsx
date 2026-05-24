@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
+import Image from "next/image";
 import { ImageIcon } from "lucide-react";
 
 const containerVariants: Variants = {
@@ -27,19 +28,16 @@ const itemVariants: Variants = {
   },
 };
 
-const galleryItems = Array.from({ length: 8 }, (_, i) => ({
-  id: i,
-  gradient: [
-    "from-brand-maroon via-brand-gold to-brand-warm-beige",
-    "from-brand-gold to-brand-maroon",
-    "from-brand-warm-beige via-brand-maroon to-brand-gold",
-    "from-brand-gold-light via-brand-maroon to-brand-dark",
-    "from-brand-maroon to-brand-gold-light",
-    "from-brand-warm-beige to-brand-maroon",
-    "from-brand-gold via-brand-dark to-brand-maroon",
-    "from-brand-maroon via-brand-warm-beige to-brand-gold",
-  ][i],
-}));
+const galleryItems = [
+  { id: 0, image: "/images/calamares.png", alt: "Calamares", isImage: true },
+  { id: 1, image: "/images/tapsilog.png", alt: "Tapsilog", isImage: true },
+  { id: 2, image: "/images/palabok.png", alt: "Pancit Palabok", isImage: true },
+  { id: 3, image: "/images/club-sandwich.png", alt: "Club Sandwich", isImage: true },
+  { id: 4, gradient: "from-brand-maroon via-brand-gold to-brand-warm-beige", isImage: false },
+  { id: 5, gradient: "from-brand-gold to-brand-maroon", isImage: false },
+  { id: 6, gradient: "from-brand-warm-beige via-brand-maroon to-brand-gold", isImage: false },
+  { id: 7, gradient: "from-brand-gold-light via-brand-maroon to-brand-dark", isImage: false },
+];
 
 export default function GallerySection() {
   return (
@@ -83,15 +81,32 @@ export default function GallerySection() {
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             >
-              {/* Image Placeholder with Gradient */}
-              <div
-                className={`w-full h-full bg-gradient-to-br ${item.gradient} flex items-center justify-center relative`}
-              >
-                <ImageIcon className="w-12 h-12 text-white/30 z-10" />
-
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors duration-300 z-20"></div>
-              </div>
+              {item.isImage ? (
+                <>
+                  {/* Real Food Image */}
+                  <Image
+                    src={item.image!}
+                    alt={item.alt!}
+                    fill
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    loading="lazy"
+                  />
+                  {/* Hover Overlay */}
+                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors duration-300 z-20"></div>
+                </>
+              ) : (
+                <>
+                  {/* Gradient Placeholder */}
+                  <div
+                    className={`w-full h-full bg-gradient-to-br ${item.gradient} flex items-center justify-center relative`}
+                  >
+                    <ImageIcon className="w-12 h-12 text-white/30 z-10" />
+                    {/* Hover Overlay */}
+                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors duration-300 z-20"></div>
+                  </div>
+                </>
+              )}
 
               {/* Hover Effect Shadow */}
               <div className="absolute inset-0 shadow-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>

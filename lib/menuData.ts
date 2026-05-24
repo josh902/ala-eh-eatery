@@ -20,6 +20,13 @@ export const menuData: MenuCategory[] = [
     description: "Start your meal with our delicious appetizers",
     items: [
       {
+        name: "Calamares",
+        price: 12.99,
+        description: "Crispy deep-fried calamari rings with two authentic dipping sauces — tender and perfectly seasoned",
+        badge: "chef's special",
+        image: "/images/calamares.png",
+      },
+      {
         name: "Lumpia Shanghai",
         price: 9.99,
         description: "Crispy Filipino spring rolls filled with seasoned pork and vegetables, served with sweet chili dipping sauce",
@@ -39,33 +46,17 @@ export const menuData: MenuCategory[] = [
     ],
   },
   {
-    id: "soups",
-    label: "Soups",
-    description: "Warm and flavorful soups",
-    items: [
-      {
-        name: "Sinigang na Baboy",
-        price: 14.99,
-        description: "Pork ribs in a sour tamarind broth with fresh vegetables — a Filipino comfort classic",
-        badge: "chef's special",
-      },
-      {
-        name: "Bulalo",
-        price: 17.99,
-        description: "Slow-simmered beef marrow bone soup with corn, bok choy, and tender beef shank",
-      },
-      {
-        name: "Tinola",
-        price: 13.99,
-        description: "Chicken simmered in ginger-garlic broth with green papaya and malunggay leaves",
-      },
-    ],
-  },
-  {
     id: "rice-dishes",
     label: "Rice Dishes",
     description: "Traditional Filipino rice preparations",
     items: [
+      {
+        name: "Tapsilog",
+        price: 11.99,
+        description: "Classic Filipino breakfast — crispy fried eggs, dried beef strips, garlic fried rice, served with lumpia and fresh vegetables",
+        badge: "chef's special",
+        image: "/images/tapsilog.png",
+      },
       {
         name: "Sinangag (Garlic Fried Rice)",
         price: 4.99,
@@ -91,20 +82,21 @@ export const menuData: MenuCategory[] = [
     description: "Savory noodle dishes",
     items: [
       {
+        name: "Palabok",
+        price: 14.99,
+        description: "Rice noodles smothered in a rich shrimp sauce, topped with chicharrón, hard-boiled egg, and green onion",
+        badge: "chef's special",
+        image: "/images/palabok.png",
+      },
+      {
         name: "Pancit Canton",
         price: 13.99,
         description: "Stir-fried egg noodles with pork, shrimp, and vegetables in a savory soy-based sauce",
-        badge: "chef's special",
       },
       {
         name: "Pancit Bihon",
         price: 12.99,
         description: "Thin rice noodles sautéed with chicken, vegetables, and soy-calamansi seasoning",
-      },
-      {
-        name: "Palabok",
-        price: 14.99,
-        description: "Rice noodles smothered in a rich shrimp sauce, topped with chicharrón, hard-boiled egg, and green onion",
       },
     ],
   },
@@ -113,6 +105,12 @@ export const menuData: MenuCategory[] = [
     label: "Meat Mains",
     description: "Signature meat dishes",
     items: [
+      {
+        name: "Club Sandwich",
+        price: 10.99,
+        description: "Hearty three-layer sandwich with crispy bacon, turkey, fresh lettuce, tomato, and mayo, served with crispy fries",
+        image: "/images/club-sandwich.png",
+      },
       {
         name: "Adobo",
         price: 16.99,
@@ -133,6 +131,29 @@ export const menuData: MenuCategory[] = [
         name: "Lechon Kawali",
         price: 17.99,
         description: "Whole slab crispy deep-fried pork belly, golden and crunchy outside, juicy inside",
+      },
+    ],
+  },
+  {
+    id: "soups",
+    label: "Soups",
+    description: "Warm and flavorful soups",
+    items: [
+      {
+        name: "Sinigang na Baboy",
+        price: 14.99,
+        description: "Pork ribs in a sour tamarind broth with fresh vegetables — a Filipino comfort classic",
+        badge: "chef's special",
+      },
+      {
+        name: "Bulalo",
+        price: 17.99,
+        description: "Slow-simmered beef marrow bone soup with corn, bok choy, and tender beef shank",
+      },
+      {
+        name: "Tinola",
+        price: 13.99,
+        description: "Chicken simmered in ginger-garlic broth with green papaya and malunggay leaves",
       },
     ],
   },
