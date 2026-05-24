@@ -155,32 +155,77 @@ export default function GallerySection() {
                       <X className="w-7 h-7 text-white" />
                     </motion.button>
 
-                    {/* Enlarged Image with Smooth Transition */}
-                    <motion.div
-                      key={selectedImageId}
-                      className="flex items-center justify-center w-full px-4 sm:px-8"
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.9 }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
-                    >
-                      {galleryItems[selectedImageId].isImage ? (
-                        <Image
-                          src={galleryItems[selectedImageId].image!}
-                          alt={galleryItems[selectedImageId].alt!}
-                          width={600}
-                          height={600}
-                          className="max-w-2xl max-h-[70vh] object-contain rounded-xl shadow-2xl"
-                          priority
-                        />
-                      ) : (
-                        <div
-                          className={`w-full max-w-sm aspect-square bg-gradient-to-br ${galleryItems[selectedImageId].gradient} rounded-xl flex items-center justify-center shadow-2xl`}
+                    {/* Stacked Card Container */}
+                    <div className="flex items-center justify-center w-full h-full px-4 sm:px-8 relative">
+                      {/* Layer definitions: current, next, nextNext */}
+                      {[
+                        {
+                          id: selectedImageId,
+                          scale: 1,
+                          translateY: 0,
+                          translateX: 0,
+                          opacity: 1,
+                          zIndex: 30,
+                        },
+                        {
+                          id: (selectedImageId + 1) % galleryItems.length,
+                          scale: 0.92,
+                          translateY: 12,
+                          translateX: -6,
+                          opacity: 0.7,
+                          zIndex: 20,
+                        },
+                        {
+                          id: (selectedImageId + 2) % galleryItems.length,
+                          scale: 0.84,
+                          translateY: 24,
+                          translateX: -12,
+                          opacity: 0.5,
+                          zIndex: 10,
+                        },
+                      ].map((layer, idx) => (
+                        <motion.div
+                          key={`layer-${layer.id}`}
+                          className="absolute flex items-center justify-center w-full px-4 sm:px-8"
+                          style={{
+                            zIndex: layer.zIndex,
+                          }}
+                          animate={{
+                            scale: layer.scale,
+                            translateY: layer.translateY,
+                            translateX: layer.translateX,
+                            opacity: layer.opacity,
+                          }}
+                          transition={{
+                            duration: 0.4,
+                            ease: "easeOut",
+                          }}
+                          exit={{
+                            scale: idx === 0 ? 0.8 : layer.scale,
+                            opacity: idx === 0 ? 0 : layer.opacity,
+                            transition: { duration: 0.4, ease: "easeInOut" },
+                          }}
                         >
-                          <ImageIcon className="w-16 h-16 text-white/30" />
-                        </div>
-                      )}
-                    </motion.div>
+                          {galleryItems[layer.id].isImage ? (
+                            <Image
+                              src={galleryItems[layer.id].image!}
+                              alt={galleryItems[layer.id].alt!}
+                              width={idx === 0 ? 600 : 550}
+                              height={idx === 0 ? 600 : 550}
+                              className="max-w-2xl max-h-[70vh] object-contain rounded-xl shadow-2xl"
+                              priority={idx === 0}
+                              loading={idx === 0 ? "eager" : "lazy"}
+                            />
+                          ) : (
+                            <div
+                              className={`w-full max-w-sm aspect-square bg-gradient-to-br ${galleryItems[layer.id].gradient} rounded-xl flex items-center justify-center shadow-2xl border border-white/5`}
+                            >
+                              <ImageIcon className="w-16 h-16 text-white/30" />
+                            </div>
+                          )}
+                        </motion.div>
+                      ))}
+                    </div>
 
                     {/* Navigation Buttons */}
                     <motion.button
