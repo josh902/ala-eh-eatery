@@ -72,7 +72,6 @@ export default function AboutSection() {
                 />
               </div>
             </div>
-            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-brand-gold rounded-xl shadow-lg opacity-80"></div>
           </motion.div>
 
           {/* Content */}
