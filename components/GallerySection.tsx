@@ -150,21 +150,21 @@ export default function GallerySection() {
                   </button>
 
                   {/* Enlarged Image */}
-                  <div className="flex items-center justify-center w-full h-full px-4 sm:px-8">
+                  <div className="flex items-center justify-center w-full px-4 sm:px-8">
                     {galleryItems[selectedImageId].isImage ? (
                       <Image
                         src={galleryItems[selectedImageId].image!}
                         alt={galleryItems[selectedImageId].alt!}
-                        width={900}
-                        height={900}
-                        className="max-w-full max-h-full object-contain rounded-lg"
+                        width={600}
+                        height={600}
+                        className="max-w-2xl max-h-[70vh] object-contain rounded-lg"
                         priority
                       />
                     ) : (
                       <div
-                        className={`w-full max-w-2xl aspect-square bg-gradient-to-br ${galleryItems[selectedImageId].gradient} rounded-lg flex items-center justify-center`}
+                        className={`w-full max-w-sm aspect-square bg-gradient-to-br ${galleryItems[selectedImageId].gradient} rounded-lg flex items-center justify-center`}
                       >
-                        <ImageIcon className="w-20 h-20 text-white/30" />
+                        <ImageIcon className="w-16 h-16 text-white/30" />
                       </div>
                     )}
                   </div>
