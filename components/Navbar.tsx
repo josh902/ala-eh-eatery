@@ -64,7 +64,7 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20 sm:h-24">
+        <div className="flex justify-between items-center h-20 sm:h-28">
           {/* Logo/Brand */}
           <a
             href="#home"
@@ -74,9 +74,9 @@ export default function Navbar() {
             <Image
               src="/alaehLogo.png"
               alt="Ala Eh Eatery"
-              width={64}
-              height={64}
-              className="h-14 w-14 sm:h-16 sm:w-16 object-contain transition-opacity group-hover:opacity-80"
+              width={120}
+              height={120}
+              className="h-16 w-16 sm:h-24 sm:w-24 object-contain transition-opacity group-hover:opacity-80 drop-shadow-sm"
               priority
             />
           </a>
