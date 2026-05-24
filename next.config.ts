@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig = {
   images: {
-    qualities: [100, 75],
+    qualities: [100, 85, 75],
   },
   onDemandEntries: {
     maxInactiveAge: 1000 * 60 * 60,

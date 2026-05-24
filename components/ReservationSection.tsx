@@ -188,6 +188,7 @@ export default function ReservationSection() {
                   value={formData.name}
                   onChange={handleInputChange}
                   placeholder="Your name"
+                  autoComplete="name"
                   className="border-brand-cream/30 bg-brand-cream/50 focus:bg-white focus:border-brand-gold"
                   required
                 />
@@ -207,6 +208,8 @@ export default function ReservationSection() {
                   value={formData.email}
                   onChange={handleInputChange}
                   placeholder="your.email@example.com"
+                  inputMode="email"
+                  autoComplete="email"
                   className="border-brand-cream/30 bg-brand-cream/50 focus:bg-white focus:border-brand-gold"
                   required
                 />
@@ -228,6 +231,8 @@ export default function ReservationSection() {
                 value={formData.phone}
                 onChange={handleInputChange}
                 placeholder="(902) 123-4567"
+                inputMode="tel"
+                autoComplete="tel"
                 className="border-brand-cream/30 bg-brand-cream/50 focus:bg-white focus:border-brand-gold"
                 required
               />
@@ -235,7 +240,7 @@ export default function ReservationSection() {
 
             {/* Date, Time, Party Size Row */}
             <motion.div
-              className="grid grid-cols-1 md:grid-cols-3 gap-6"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
               variants={itemVariants}
             >
               <div className="space-y-2">
@@ -333,7 +338,7 @@ export default function ReservationSection() {
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="px-10 py-6 bg-brand-maroon hover:bg-brand-maroon/90 text-white font-semibold text-lg rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-50"
+                className="px-10 py-6 bg-brand-maroon hover:bg-brand-maroon/90 text-white font-semibold text-lg rounded-lg shadow-lg hover:shadow-xl active:scale-95 transition-all duration-200 disabled:opacity-50"
               >
                 {isLoading ? "Submitting..." : "Reserve Table"}
               </Button>

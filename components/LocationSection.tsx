@@ -73,7 +73,7 @@ export default function LocationSection() {
         >
           {/* Map */}
           <motion.div
-            className="relative rounded-2xl overflow-hidden shadow-2xl h-96 lg:h-full min-h-96"
+            className="relative rounded-2xl overflow-hidden shadow-2xl h-64 sm:h-80 lg:h-full"
             variants={itemVariants}
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.3 }}

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Lora } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
@@ -24,6 +24,12 @@ export const metadata: Metadata = {
     description: "Authentic Filipino cuisine in Halifax, NS",
     type: "website",
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
 };
 
 export default function RootLayout({

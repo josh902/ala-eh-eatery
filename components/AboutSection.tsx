@@ -59,14 +59,15 @@ export default function AboutSection() {
             className="relative"
             variants={imageVariants}
           >
-            <div className="bg-gradient-to-br from-brand-maroon via-brand-gold to-brand-warm-beige rounded-2xl overflow-hidden shadow-2xl aspect-square sm:aspect-auto sm:h-96 lg:h-[500px]">
+            <div className="bg-gradient-to-br from-brand-maroon via-brand-gold to-brand-warm-beige rounded-2xl overflow-hidden shadow-2xl aspect-square max-h-80 sm:aspect-auto sm:h-96 lg:h-[500px]">
               <div className="w-full h-full flex items-center justify-center p-12">
                 <Image
                   src="/alaehLogo.png"
                   alt="Ala Eh Eatery"
                   width={400}
                   height={400}
-                  quality={100}
+                  quality={85}
+                  loading="lazy"
                   className="w-full h-full object-contain drop-shadow-2xl"
                 />
               </div>

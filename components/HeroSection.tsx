@@ -64,7 +64,7 @@ export default function HeroSection() {
 
         {/* Main Headline */}
         <motion.h1
-          className="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold text-brand-gold-light mb-6 leading-tight"
+          className="font-serif text-3xl sm:text-5xl lg:text-7xl font-bold text-brand-gold-light mb-6 leading-tight"
           variants={itemVariants}
         >
           Experience Authentic
@@ -88,7 +88,7 @@ export default function HeroSection() {
         >
           <Button
             onClick={handleReserveClick}
-            className="px-8 py-6 bg-brand-gold hover:bg-brand-gold-light text-brand-dark font-semibold text-lg rounded-lg shadow-lg hover:shadow-xl transition-all duration-200"
+            className="px-8 py-6 bg-brand-gold hover:bg-brand-gold-light text-brand-dark font-semibold text-lg rounded-lg shadow-lg hover:shadow-xl active:scale-95 transition-all duration-200"
           >
             Reserve Now
           </Button>
@@ -98,7 +98,7 @@ export default function HeroSection() {
               menuSection?.scrollIntoView({ behavior: "smooth" });
             }}
             variant="outline"
-            className="px-8 py-6 border-2 border-brand-cream text-brand-cream hover:bg-brand-cream/10 font-semibold text-lg rounded-lg transition-all duration-200"
+            className="px-8 py-6 border-2 border-brand-cream text-brand-cream hover:bg-brand-cream/10 font-semibold text-lg rounded-lg active:scale-95 transition-all duration-200"
           >
             View Menu
           </Button>

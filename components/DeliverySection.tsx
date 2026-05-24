@@ -113,7 +113,7 @@ export default function DeliverySection() {
                   </div>
 
                   {/* CTA Button */}
-                  <button className="w-full px-6 py-3 bg-brand-maroon text-brand-cream font-semibold rounded-lg transition-all duration-300 group-hover:bg-brand-gold group-hover:text-brand-dark shadow-md hover:shadow-lg">
+                  <button className="w-full px-6 py-3 bg-brand-maroon text-brand-cream font-semibold rounded-lg transition-all duration-300 group-hover:bg-brand-gold group-hover:text-brand-dark shadow-md hover:shadow-lg active:scale-95">
                     Order Now
                   </button>
                 </div>
