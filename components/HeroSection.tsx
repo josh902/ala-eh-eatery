@@ -37,7 +37,7 @@ export default function HeroSection() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-brand-dark via-brand-maroon to-brand-dark"
+      className="relative min-h-screen pt-20 sm:pt-24 flex items-center justify-center overflow-hidden bg-gradient-to-br from-brand-dark via-brand-maroon to-brand-dark"
     >
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 opacity-20">

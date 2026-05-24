@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { Menu } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
@@ -21,16 +20,21 @@ const navLinks = [
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const currentScrollY = window.scrollY;
+      setIsScrolled(currentScrollY > 50);
+      setIsHidden(currentScrollY > 15);
+      setLastScrollY(currentScrollY);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
@@ -56,7 +60,9 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`sticky top-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ${
+        isHidden ? "-translate-y-full" : "translate-y-0"
+      } ${
         isScrolled
           ? "bg-brand-dark shadow-lg"
           : "bg-brand-cream border-b border-brand-gold/20"
@@ -98,15 +104,13 @@ export default function Navbar() {
 
           {/* Mobile Menu */}
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-            <SheetTrigger className="md:hidden">
-              <Button
-                variant="ghost"
-                size="icon"
-                aria-label="Open menu"
-                className={isScrolled ? "text-brand-cream" : "text-brand-dark"}
-              >
-                <Menu className="w-6 h-6" />
-              </Button>
+            <SheetTrigger
+              aria-label="Open menu"
+              className={`md:hidden p-2 rounded-md transition-colors ${
+                isScrolled ? "text-brand-cream hover:bg-brand-cream/10" : "text-brand-dark hover:bg-brand-dark/10"
+              }`}
+            >
+              <Menu className="w-6 h-6" />
             </SheetTrigger>
             <SheetContent
               side="right"
