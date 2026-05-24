@@ -136,8 +136,8 @@ export default function GallerySection() {
 
         {/* Lightbox Modal */}
         <Sheet open={selectedImageId !== null} onOpenChange={(open) => !open && setSelectedImageId(null)}>
-          <SheetContent side="bottom" className="h-screen w-screen max-w-none bg-gradient-to-b from-black/95 to-black/90 border-none p-0 flex flex-col">
-            <div className="flex-1 flex items-center justify-center relative group">
+          <SheetContent side="bottom" className="h-screen w-screen max-w-none bg-gradient-to-b from-black/95 to-black/90 border-none p-0 flex items-center justify-center">
+            <div className="w-full h-full flex items-center justify-center relative group">
               <AnimatePresence mode="wait">
                 {selectedImageId !== null && (
                   <>
