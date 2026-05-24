@@ -130,15 +130,6 @@ export default function FeaturedMenuSection() {
                       <UtensilsCrossed className="w-12 h-12" />
                     </div>
                   )}
-                  {item.badge && (
-                    <span className="absolute top-3 right-3 px-3 py-1 bg-brand-maroon text-white text-xs font-bold rounded-full">
-                      {item.badge === "spicy"
-                        ? "🌶️ Spicy"
-                        : item.badge === "vegetarian"
-                        ? "🥬 Vegetarian"
-                        : "👨‍🍳 Chef's Special"}
-                    </span>
-                  )}
                 </div>
                 <div className="p-6">
                   <h3 className="font-serif text-xl font-bold text-brand-dark mb-2">

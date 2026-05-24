@@ -23,20 +23,17 @@ export const menuData: MenuCategory[] = [
         name: "Calamares",
         price: 12.99,
         description: "Crispy deep-fried calamari rings with two authentic dipping sauces — tender and perfectly seasoned",
-        badge: "chef's special",
         image: "/images/calamares.png",
       },
       {
         name: "Lumpia Shanghai",
         price: 9.99,
         description: "Crispy Filipino spring rolls filled with seasoned pork and vegetables, served with sweet chili dipping sauce",
-        badge: "chef's special",
       },
       {
         name: "Tokwa't Baboy",
         price: 10.99,
         description: "Fried tofu and pork ears tossed in a tangy soy-vinegar sauce with green onions and chili",
-        badge: "spicy",
       },
       {
         name: "Lechon Kawali Bites",
@@ -54,20 +51,17 @@ export const menuData: MenuCategory[] = [
         name: "Tapsilog",
         price: 11.99,
         description: "Classic Filipino breakfast — crispy fried eggs, dried beef strips, garlic fried rice, served with lumpia and fresh vegetables",
-        badge: "chef's special",
         image: "/images/tapsilog.png",
       },
       {
         name: "Sinangag (Garlic Fried Rice)",
         price: 4.99,
         description: "Filipino-style garlic fried rice — crispy garlic bits, a perfect side for any dish",
-        badge: "vegetarian",
       },
       {
         name: "Java Rice",
         price: 4.99,
         description: "Golden turmeric-seasoned rice, a classic pairing with grilled and saucy mains",
-        badge: "vegetarian",
       },
       {
         name: "Champorado",
@@ -85,7 +79,6 @@ export const menuData: MenuCategory[] = [
         name: "Palabok",
         price: 14.99,
         description: "Rice noodles smothered in a rich shrimp sauce, topped with chicharrón, hard-boiled egg, and green onion",
-        badge: "chef's special",
         image: "/images/palabok.png",
       },
       {
@@ -115,7 +108,6 @@ export const menuData: MenuCategory[] = [
         name: "Adobo",
         price: 16.99,
         description: "Our house Filipino adobo — pork and chicken braised in soy sauce, vinegar, garlic, and bay leaf",
-        badge: "chef's special",
       },
       {
         name: "Kare-Kare",
@@ -143,7 +135,6 @@ export const menuData: MenuCategory[] = [
         name: "Sinigang na Baboy",
         price: 14.99,
         description: "Pork ribs in a sour tamarind broth with fresh vegetables — a Filipino comfort classic",
-        badge: "chef's special",
       },
       {
         name: "Bulalo",
@@ -166,7 +157,6 @@ export const menuData: MenuCategory[] = [
         name: "Sinigang na Hipon",
         price: 16.99,
         description: "Plump shrimp in a tangy tamarind broth with radish, eggplant, and string beans",
-        badge: "chef's special",
       },
       {
         name: "Inihaw na Bangus",
@@ -177,7 +167,6 @@ export const menuData: MenuCategory[] = [
         name: "Kinilaw na Tuna",
         price: 13.99,
         description: "Fresh tuna cured in coconut vinegar with ginger, onion, and chili — Filipino-style ceviche",
-        badge: "spicy",
       },
     ],
   },
@@ -190,19 +179,16 @@ export const menuData: MenuCategory[] = [
         name: "Pinakbet",
         price: 11.99,
         description: "Mixed vegetables — bitter melon, eggplant, squash, okra — cooked in shrimp paste",
-        badge: "vegetarian",
       },
       {
         name: "Laing",
         price: 10.99,
         description: "Dried taro leaves slow-cooked in rich coconut milk with chili and shrimp paste",
-        badge: "vegetarian",
       },
       {
         name: "Ginisang Monggo",
         price: 9.99,
         description: "Sautéed mung bean stew with garlic, onion, and malunggay leaves",
-        badge: "vegetarian",
       },
     ],
   },
@@ -215,7 +201,6 @@ export const menuData: MenuCategory[] = [
         name: "Halo-Halo",
         price: 8.99,
         description: "The classic Filipino shaved ice dessert — sweetened beans, jellies, fruits, ube ice cream, and leche flan",
-        badge: "chef's special",
       },
       {
         name: "Leche Flan",
@@ -231,7 +216,6 @@ export const menuData: MenuCategory[] = [
         name: "Maja Blanca",
         price: 5.99,
         description: "Creamy coconut milk pudding with corn kernels, dusted with toasted coconut",
-        badge: "vegetarian",
       },
     ],
   },
