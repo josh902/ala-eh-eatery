@@ -34,6 +34,8 @@ const galleryItems = [
   { id: 1, image: "/images/tapsilog.png", alt: "Tapsilog", isImage: true },
   { id: 2, image: "/images/palabok.png", alt: "Pancit Palabok", isImage: true },
   { id: 3, image: "/images/club-sandwich.png", alt: "Club Sandwich", isImage: true },
+  { id: 4, image: "/images/Halo-Halo.png", alt: "Halo-Halo", isImage: true },
+  { id: 5, image: "/images/Kikiam.png", alt: "Kikiam", isImage: true },
 ];
 
 export default function GallerySection() {
