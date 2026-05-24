@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { CheckCircle, Utensils, Clock } from "lucide-react";
@@ -59,8 +60,14 @@ export default function AboutSection() {
             variants={imageVariants}
           >
             <div className="bg-gradient-to-br from-brand-maroon via-brand-gold to-brand-warm-beige rounded-2xl overflow-hidden shadow-2xl aspect-square sm:aspect-auto sm:h-96 lg:h-[500px]">
-              <div className="w-full h-full flex items-center justify-center text-brand-dark/30 font-serif text-4xl font-bold">
-                Image
+              <div className="w-full h-full flex items-center justify-center p-12">
+                <Image
+                  src="/alaehLogo.png"
+                  alt="Ala Eh Eatery"
+                  width={400}
+                  height={400}
+                  className="w-full h-full object-contain drop-shadow-2xl"
+                />
               </div>
             </div>
             <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-brand-gold rounded-xl shadow-lg opacity-80"></div>
