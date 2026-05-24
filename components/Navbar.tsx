@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
+import Image from "next/image";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -69,14 +69,16 @@ export default function Navbar() {
           <a
             href="#home"
             onClick={handleNavClick}
-            className="group flex flex-col items-start"
+            className="group"
           >
-            <h1 className="font-serif text-2xl sm:text-3xl font-bold text-brand-gold group-hover:text-brand-gold-light transition-colors">
-              Ala Eh
-            </h1>
-            <p className="text-xs sm:text-sm text-brand-gold-light font-light tracking-widest">
-              EATERY
-            </p>
+            <Image
+              src="/alaehLogo.png"
+              alt="Ala Eh Eatery"
+              width={64}
+              height={64}
+              className="h-14 w-14 sm:h-16 sm:w-16 object-contain transition-opacity group-hover:opacity-80"
+              priority
+            />
           </a>
 
           {/* Desktop Navigation */}

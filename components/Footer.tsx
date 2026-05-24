@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Heart, Share2, Phone, Mail } from "lucide-react";
 
@@ -41,14 +42,15 @@ export default function Footer() {
                 e.preventDefault();
                 document.querySelector("#home")?.scrollIntoView({ behavior: "smooth" });
               }}
-              className="group flex flex-col"
+              className="group"
             >
-              <h3 className="font-serif text-2xl font-bold text-brand-gold group-hover:text-brand-gold-light transition-colors">
-                Ala Eh
-              </h3>
-              <p className="text-xs text-brand-gold-light font-light tracking-widest">
-                EATERY
-              </p>
+              <Image
+                src="/alaehLogo.png"
+                alt="Ala Eh Eatery"
+                width={80}
+                height={80}
+                className="h-20 w-20 object-contain transition-opacity group-hover:opacity-80"
+              />
             </a>
             <p className="text-brand-cream/70 font-light leading-relaxed text-sm">
               Authentic Filipino cuisine brought to Halifax with passion,
