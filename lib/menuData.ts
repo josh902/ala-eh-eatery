@@ -20,10 +20,10 @@ export const menuData: MenuCategory[] = [
     description: "Start your meal with our delicious appetizers",
     items: [
       {
-        name: "Calamares",
+        name: "Calamari",
         price: 12.99,
         description: "Crispy deep-fried calamari rings with two authentic dipping sauces — tender and perfectly seasoned",
-        image: "/images/calamares.png",
+        image: "/images/calamari.png",
       },
       {
         name: "Lumpia Shanghai",

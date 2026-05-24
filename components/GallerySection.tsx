@@ -29,7 +29,7 @@ const itemVariants: Variants = {
 };
 
 const galleryItems = [
-  { id: 0, image: "/images/calamares.png", alt: "Calamares", isImage: true },
+  { id: 0, image: "/images/calamari.png", alt: "Calamari", isImage: true },
   { id: 1, image: "/images/tapsilog.png", alt: "Tapsilog", isImage: true },
   { id: 2, image: "/images/palabok.png", alt: "Pancit Palabok", isImage: true },
   { id: 3, image: "/images/club-sandwich.png", alt: "Club Sandwich", isImage: true },
