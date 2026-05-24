@@ -5,7 +5,6 @@ import type { Variants } from "framer-motion";
 import Image from "next/image";
 import { ImageIcon, ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useState, useEffect } from "react";
-import { Sheet, SheetContent } from "@/components/ui/sheet";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -135,10 +134,18 @@ export default function GallerySection() {
         </motion.div>
 
         {/* Lightbox Modal */}
-        <Sheet open={selectedImageId !== null} onOpenChange={(open) => !open && setSelectedImageId(null)}>
-          <SheetContent side="bottom" className="h-screen w-screen max-w-none bg-gradient-to-b from-black/95 to-black/90 border-none p-0 flex items-center justify-center">
-            <div className="w-full h-full flex items-center justify-center relative group">
-              <AnimatePresence mode="wait">
+        <AnimatePresence>
+          {selectedImageId !== null && (
+            <motion.div
+              className="fixed inset-0 bg-gradient-to-b from-black/95 to-black/90 flex items-center justify-center z-50"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={() => setSelectedImageId(null)}
+            >
+              <div className="w-full h-full flex items-center justify-center relative group" onClick={(e) => e.stopPropagation()}>
+                <AnimatePresence mode="wait">
                 {selectedImageId !== null && (
                   <>
                     {/* Close Button */}
@@ -261,9 +268,10 @@ export default function GallerySection() {
                   </>
                 )}
               </AnimatePresence>
-            </div>
-          </SheetContent>
-        </Sheet>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );
