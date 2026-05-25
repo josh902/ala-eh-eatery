@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import type { Variants } from "framer-motion";
 import Image from "next/image";
-import { ImageIcon, ChevronLeft, ChevronRight, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const containerVariants: Variants = {
@@ -30,12 +30,12 @@ const itemVariants: Variants = {
 };
 
 const galleryItems = [
-  { id: 0, image: "/images/calamari.png", alt: "Calamari", isImage: true },
-  { id: 1, image: "/images/tapsilog.png", alt: "Tapsilog", isImage: true },
-  { id: 2, image: "/images/palabok.png", alt: "Pancit Palabok", isImage: true },
-  { id: 3, image: "/images/club-sandwich.png", alt: "Club Sandwich", isImage: true },
-  { id: 4, image: "/images/Halo-Halo.png", alt: "Halo-Halo", isImage: true },
-  { id: 5, image: "/images/Kikiam.png", alt: "Kikiam", isImage: true },
+  { id: 0, image: "/images/calamari.png", alt: "Calamari" },
+  { id: 1, image: "/images/tapsilog.png", alt: "Tapsilog" },
+  { id: 2, image: "/images/palabok.png", alt: "Pancit Palabok" },
+  { id: 3, image: "/images/club-sandwich.png", alt: "Club Sandwich" },
+  { id: 4, image: "/images/Halo-Halo.png", alt: "Halo-Halo" },
+  { id: 5, image: "/images/Kikiam.png", alt: "Kikiam" },
 ];
 
 export default function GallerySection() {
@@ -98,32 +98,17 @@ export default function GallerySection() {
               transition={{ duration: 0.3 }}
               onClick={() => setSelectedImageId(item.id)}
             >
-              {item.isImage ? (
-                <>
-                  {/* Real Food Image */}
-                  <Image
-                    src={item.image!}
-                    alt={item.alt!}
-                    fill
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                    loading="lazy"
-                  />
-                  {/* Hover Overlay */}
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 z-20"></div>
-                </>
-              ) : (
-                <>
-                  {/* Gradient Placeholder */}
-                  <div
-                    className={`w-full h-full bg-gradient-to-br ${item.gradient} flex items-center justify-center relative`}
-                  >
-                    <ImageIcon className="w-12 h-12 text-white/30 z-10" />
-                    {/* Hover Overlay */}
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 z-20"></div>
-                  </div>
-                </>
-              )}
+              <>
+                <Image
+                  src={item.image}
+                  alt={item.alt}
+                  fill
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 z-20" />
+              </>
 
               {/* Hover Effect Shadow */}
               <div className="absolute inset-0 shadow-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
@@ -211,23 +196,15 @@ export default function GallerySection() {
                             transition: { duration: 0.4, ease: "easeInOut" },
                           }}
                         >
-                          {galleryItems[layer.id].isImage ? (
-                            <Image
-                              src={galleryItems[layer.id].image!}
-                              alt={galleryItems[layer.id].alt!}
-                              width={idx === 0 ? 600 : 550}
-                              height={idx === 0 ? 600 : 550}
-                              className="max-w-2xl max-h-[70vh] object-contain rounded-xl shadow-2xl"
-                              priority={idx === 0}
-                              loading={idx === 0 ? "eager" : "lazy"}
-                            />
-                          ) : (
-                            <div
-                              className={`w-full max-w-sm aspect-square bg-gradient-to-br ${galleryItems[layer.id].gradient} rounded-xl flex items-center justify-center shadow-2xl border border-white/5`}
-                            >
-                              <ImageIcon className="w-16 h-16 text-white/30" />
-                            </div>
-                          )}
+                          <Image
+                            src={galleryItems[layer.id].image}
+                            alt={galleryItems[layer.id].alt}
+                            width={idx === 0 ? 600 : 550}
+                            height={idx === 0 ? 600 : 550}
+                            className="max-w-2xl max-h-[70vh] object-contain rounded-xl shadow-2xl"
+                            priority={idx === 0}
+                            loading={idx === 0 ? "eager" : "lazy"}
+                          />
                         </motion.div>
                       ))}
                     </div>
