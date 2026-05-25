@@ -42,7 +42,7 @@ export default function RootLayout({
       lang="en"
       className={`${playfair.variable} ${lora.variable} h-full antialiased scroll-smooth`}
     >
-      <body className="min-h-full flex flex-col bg-[#FDF6E3] text-[#2a1810]">
+      <body suppressHydrationWarning className="min-h-full flex flex-col bg-[#FDF6E3] text-[#2a1810]">
         {children}
         <Toaster position="top-center" />
       </body>

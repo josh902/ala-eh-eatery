@@ -113,18 +113,21 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8 lg:gap-12">
             {navLinks.map((link) => (
-              <a
+              <motion.a
                 key={link.href}
                 href={link.href}
                 onClick={handleNavClick}
-                className={`text-sm lg:text-base font-medium transition-colors duration-200 ${
+                whileHover={{ y: -2 }}
+                transition={{ duration: 0.15 }}
+                className={`relative group pb-1 text-sm lg:text-base font-medium transition-colors duration-200 ${
                   isScrolled
                     ? "text-brand-cream hover:text-brand-gold"
                     : "text-brand-dark hover:text-brand-gold"
                 }`}
               >
                 {link.label}
-              </a>
+                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[var(--brand-gold)] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center" />
+              </motion.a>
             ))}
           </div>
 

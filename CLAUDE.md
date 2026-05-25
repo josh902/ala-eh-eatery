@@ -66,7 +66,7 @@ All animations use **Framer Motion** with a consistent pattern: define `variants
 ## Styling
 
 - Path alias `@/*` maps to the project root
-- Brand colors available as Tailwind classes (`brand-dark`, `brand-maroon`, `brand-gold`, `brand-gold-light`, `brand-cream`, `brand-warm-beige`, `brand-text-dark`) and as CSS variables (`--brand-*`) in `app/globals.css`
+- Brand colors are defined both in `tailwind.config.ts` (as `brand-*` class names) and as CSS variables (`--brand-*`) in `app/globals.css`. **In Tailwind v4, the config-based utility classes (`bg-brand-maroon`, etc.) may not generate CSS reliably.** Use the CSS-variable arbitrary-value syntax instead: `bg-[var(--brand-maroon)]`, `text-[var(--brand-gold)]`, etc. This directly references the CSS variable and always works.
 - Fonts: `font-serif` = Playfair Display (headings), `font-sans` = Lora (body) — loaded as CSS vars in `app/layout.tsx`
 - Shadcn style is `base-nova`
 
@@ -115,3 +115,9 @@ Iterate with follow-up questions as needed. Do not begin implementation until al
 **Import conflicts** — TypeScript error "'X' is declared but its value is never read"
 - Cause: Same name imported from multiple libraries (e.g., `Image` from both lucide-react and next/image)
 - Fix: Rename one import using `as` (e.g., `import { Image as ImageIcon } from "lucide-react"`)
+
+**Shadcn components render transparent / invisible**
+- Cause: This project uses shadcn but never defined shadcn's semantic CSS tokens (`--primary`, `--popover`, `--accent`, `--background`, `--foreground`, etc.) in `globals.css`. Shadcn components whose default styles reference these variables render with no background/color.
+- Affected components: `Button` (default variant uses `bg-primary`), `SelectContent` (uses `bg-popover`), and any other shadcn primitives using semantic tokens.
+- Fix: Pass explicit color overrides via `className`. For buttons, either use a plain `<button>` with `bg-[var(--brand-maroon)]`-style classes, or pass a `className` that includes the desired background. For `SelectContent`, add `className="bg-white border border-brand-cream/50 shadow-lg"`.
+- **Do not** use the Button component's default variant without overriding `bg-primary`.

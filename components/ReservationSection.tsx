@@ -1,9 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -40,6 +39,44 @@ const itemVariants: Variants = {
   },
 };
 
+const OPERATING_HOURS: Record<number, { start: number; end: number } | null> = {
+  0: { start: 9,  end: 19.5 }, // Sunday
+  1: { start: 10, end: 19.5 }, // Monday
+  2: null,                      // Tuesday — closed
+  3: { start: 10, end: 19.5 }, // Wednesday
+  4: { start: 10, end: 19.5 }, // Thursday
+  5: { start: 10, end: 19.5 }, // Friday
+  6: { start: 9,  end: 19.5 }, // Saturday
+};
+
+const getTimeSlots = (dateStr: string): string[] => {
+  const slots: string[] = [];
+  if (!dateStr) return slots;
+  const [y, m, d] = dateStr.split("-").map(Number);
+  const day = new Date(y, m - 1, d).getDay();
+  const hours = OPERATING_HOURS[day];
+  if (!hours) return slots;
+  for (let t = hours.start; t <= hours.end; t += 0.5) {
+    const h = Math.floor(t);
+    const min = t % 1 === 0.5 ? "30" : "00";
+    slots.push(`${h.toString().padStart(2, "0")}:${min}`);
+  }
+  return slots;
+};
+
+const isDayClosed = (dateStr: string): boolean => {
+  if (!dateStr) return false;
+  const [y, m, d] = dateStr.split("-").map(Number);
+  return new Date(y, m - 1, d).getDay() === 2;
+};
+
+const formatTimeDisplay = (time: string): string => {
+  const [h, m] = time.split(":").map(Number);
+  const period = h >= 12 ? "PM" : "AM";
+  const hour = h > 12 ? h - 12 : h === 0 ? 12 : h;
+  return `${hour}:${m.toString().padStart(2, "0")} ${period}`;
+};
+
 interface FormData {
   name: string;
   email: string;
@@ -61,6 +98,27 @@ export default function ReservationSection() {
     partySize: "",
     specialRequests: "",
   });
+
+  const [timePickerOpen, setTimePickerOpen] = useState(false);
+  const timePickerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (timePickerRef.current && !timePickerRef.current.contains(e.target as Node)) {
+        setTimePickerOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  useEffect(() => {
+    if (!formData.date || !formData.time) return;
+    const validSlots = getTimeSlots(formData.date);
+    if (!validSlots.includes(formData.time)) {
+      setFormData((prev) => ({ ...prev, time: "" }));
+    }
+  }, [formData.date]);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -96,6 +154,10 @@ export default function ReservationSection() {
     }
     if (!date) {
       toast.error("Please select a date");
+      return false;
+    }
+    if (isDayClosed(date)) {
+      toast.error("We're closed on Tuesdays. Please select another date.");
       return false;
     }
     if (!time) {
@@ -265,21 +327,62 @@ export default function ReservationSection() {
 
               <div className="space-y-2">
                 <Label
-                  htmlFor="time"
                   className="text-brand-dark font-semibold text-sm flex items-center gap-2"
                 >
                   <Clock className="w-4 h-4 text-brand-gold" />
                   Time
                 </Label>
-                <Input
-                  id="time"
-                  name="time"
-                  type="time"
-                  value={formData.time}
-                  onChange={handleInputChange}
-                  className="border-brand-cream/30 bg-brand-cream/50 focus:bg-white focus:border-brand-gold"
-                  required
-                />
+                <div className="relative" ref={timePickerRef}>
+                  <button
+                    type="button"
+                    onClick={() => setTimePickerOpen((o) => !o)}
+                    className="w-full flex items-center justify-between px-3 py-2 h-10 border border-brand-cream/30 bg-brand-cream/50 rounded-md text-sm hover:bg-white hover:border-brand-gold focus:outline-none focus:border-brand-gold transition-colors"
+                  >
+                    <span className={formData.time ? "text-brand-dark" : "text-brand-dark/40"}>
+                      {formData.time ? formatTimeDisplay(formData.time) : "Select time"}
+                    </span>
+                    <Clock className="w-4 h-4 text-brand-gold flex-shrink-0" />
+                  </button>
+
+                  {timePickerOpen && (
+                    <div className="absolute top-full left-0 mt-1 z-50 bg-white rounded-xl border border-brand-cream/50 shadow-xl p-3 w-full min-w-[200px]">
+                      <p className="text-xs text-brand-dark/50 font-medium mb-2 text-center tracking-wide uppercase">
+                        {formData.date
+                          ? (() => {
+                              const [y, mo, d] = formData.date.split("-").map(Number);
+                              return new Date(y, mo - 1, d).toLocaleDateString("en-US", { weekday: "long" });
+                            })()
+                          : "Select a date first"}
+                      </p>
+                      {isDayClosed(formData.date) ? (
+                        <p className="text-sm text-center text-brand-dark/60 py-3 px-2">
+                          We&apos;re closed on Tuesdays.<br />
+                          <span className="text-[var(--brand-maroon)] font-medium">Please choose another date.</span>
+                        </p>
+                      ) : (
+                        <div className="grid grid-cols-2 gap-1.5 max-h-52 overflow-y-auto pr-0.5">
+                          {getTimeSlots(formData.date).map((slot) => (
+                            <button
+                              key={slot}
+                              type="button"
+                              onClick={() => {
+                                handleSelectChange("time", slot);
+                                setTimePickerOpen(false);
+                              }}
+                              className={`px-2 py-2 rounded-lg text-sm font-medium transition-all duration-150 ${
+                                formData.time === slot
+                                  ? "bg-[var(--brand-maroon)] text-white shadow-sm"
+                                  : "bg-brand-cream/60 text-brand-dark hover:bg-[var(--brand-gold)]/20 hover:text-brand-dark"
+                              }`}
+                            >
+                              {formatTimeDisplay(slot)}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
               </div>
 
               <div className="space-y-2">
@@ -301,7 +404,7 @@ export default function ReservationSection() {
                   <SelectTrigger className="w-full border-brand-cream/30 bg-brand-cream/50 focus:bg-white focus:border-brand-gold">
                     <SelectValue placeholder="Select guests" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="bg-white border border-brand-cream/50 shadow-lg">
                     {Array.from({ length: 10 }, (_, i) => (
                       <SelectItem key={i + 1} value={(i + 1).toString()}>
                         {i + 1} {i === 0 ? "Guest" : "Guests"}
@@ -335,13 +438,13 @@ export default function ReservationSection() {
               className="flex justify-center pt-4"
               variants={itemVariants}
             >
-              <Button
+              <button
                 type="submit"
                 disabled={isLoading}
-                className="px-10 py-6 bg-brand-maroon hover:bg-brand-maroon/90 text-white font-semibold text-lg rounded-lg shadow-lg hover:shadow-xl active:scale-95 transition-all duration-200 disabled:opacity-50"
+                className="px-10 py-6 bg-[var(--brand-maroon)] hover:bg-[var(--brand-maroon)]/90 text-white font-semibold text-lg rounded-lg shadow-lg hover:shadow-xl active:scale-95 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isLoading ? "Submitting..." : "Reserve Table"}
-              </Button>
+              </button>
             </motion.div>
           </form>
 

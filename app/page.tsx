@@ -8,6 +8,7 @@ import ReservationSection from "@/components/ReservationSection";
 import DeliverySection from "@/components/DeliverySection";
 import LocationSection from "@/components/LocationSection";
 import Footer from "@/components/Footer";
+import ScrollToTopButton from "@/components/ScrollToTopButton";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       <DeliverySection />
       <LocationSection />
       <Footer />
+      <ScrollToTopButton />
     </main>
   );
 }

@@ -29,13 +29,13 @@ const itemVariants: Variants = {
 
 export default function LocationSection() {
   const hours = [
-    { day: "Monday", time: "11:00 AM - 9:00 PM" },
-    { day: "Tuesday", time: "11:00 AM - 9:00 PM" },
-    { day: "Wednesday", time: "11:00 AM - 9:00 PM" },
-    { day: "Thursday", time: "11:00 AM - 9:00 PM" },
-    { day: "Friday", time: "11:00 AM - 10:00 PM" },
-    { day: "Saturday", time: "12:00 PM - 10:00 PM" },
-    { day: "Sunday", time: "12:00 PM - 8:00 PM" },
+    { day: "Sunday",    time: "9:00 AM – 8:00 PM",  closed: false },
+    { day: "Monday",    time: "10:00 AM – 8:00 PM", closed: false },
+    { day: "Tuesday",   time: "Closed",              closed: true  },
+    { day: "Wednesday", time: "10:00 AM – 8:00 PM", closed: false },
+    { day: "Thursday",  time: "10:00 AM – 8:00 PM", closed: false },
+    { day: "Friday",    time: "10:00 AM – 8:00 PM", closed: false },
+    { day: "Saturday",  time: "9:00 AM – 8:00 PM",  closed: false },
   ];
 
   return (
@@ -223,10 +223,10 @@ export default function LocationSection() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: idx * 0.05 }}
                 >
-                  <span className="font-serif font-semibold text-brand-cream">
+                  <span className={`font-serif font-semibold ${entry.closed ? "text-brand-cream/40" : "text-brand-cream"}`}>
                     {entry.day}
                   </span>
-                  <span className="text-brand-gold/80 font-light">
+                  <span className={`font-light ${entry.closed ? "text-brand-cream/30 italic" : "text-brand-gold/80"}`}>
                     {entry.time}
                   </span>
                 </motion.div>
